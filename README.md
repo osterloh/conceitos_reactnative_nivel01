@@ -18,10 +18,10 @@ Para clonar e executar este aplicativo, você precisará [Git](https://git-scm.c
 
 ```bash
 # Para clonar este repositório
-$ git clone https://github.com/osterloh/conceitos_reactjs_nivel01.git
+$ git clone https://github.com/osterloh/conceitos_reactnative_nivel01.git
 
 # Entrar no repositório
-$ cd conceitos_reactjs_nivel01
+$ cd conceitos_reactnative_nivel01
 
 # Instalar as dependências
 $ yarn
