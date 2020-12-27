@@ -129,11 +129,149 @@ const styles = StyleSheet.create({
 });
 ```
 
+- Instalar a biblioteca <strong>Axios</strong> para consumir dados de uma API:
+
+```js
+yarn add axios
+```
+
+- Configurar o arquivo api.js para realizar a comunição com a API, para isso é necessário utilizar algumas informações referente ao tipo de emular que será utilizado:
+
+```js
+iOS com emulador: localhost
+iOS com dispositivo físico: IP da máquina
+Android com emulador: localhost (adb reverse)
+Android com emulador: 10.0.2.2 (Android Studio)
+Android com emulador: 10.0.3.2 (Genymotion)
+Android com dispositivo físico: IP da máquina
+```
+
+- Configuração para o arquivo api.js:
+
+```js
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "http://localhost:3333",
+});
+
+export default api;
+```
+
+- Para renderizar os conteúdos da API podemos utilizar o <i>FlatList</i> do react-native, o qual já possui uma configuração de scroll, caso o conteúdo passe dos limites da tela, o FlatList possui também algumas opções de configuração:
+
+```js
+* style: para aplicar as configuração de estilização;
+* data: o qual deve receber o array que conterá os dados da API;
+* keyExtractor: receberá uma função para retornar uma informação que é única para cada atributo;
+* renderItem: uma função que irá retornar os dados para serem renderizados em tela;
+```
+
+- Configuração do projeto com a importação e renderização dos dados da API, utilização do FlatList:
+
+```js
+import React, { useEffect, useState } from "react";
+import {
+  SafeAreaView,
+  FlatList,
+  Text,
+  StyleSheet,
+  StatusBar,
+} from "react-native";
+
+import api from "./service/api";
+
+export default function App() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    api.get("projects").then((response) => {
+      setProjects(response.data);
+    });
+  }, []);
+
+  return (
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={projects}
+          keyExtractor={(project) => project.id}
+          renderItem={({ item: project }) => (
+            <Text style={styles.project}>{project.title}</Text>
+          )}
+        />
+      </SafeAreaView>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#7159c1",
+  },
+  project: {
+    color: "#FFF",
+    fontSize: 20,
+  },
+});
+```
+
+- Para adicionar novas informações na API, podemos utilizar o <i>TouchableOpacity</i> que é um dos tipos de botões que pode ser utilizado no React Native e atribuir a ele uma função que realiza o método HTTP POST para passar ao Back-End as informações para serem adicionadas no projeto:
+
+```js
+export default function App() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    api.get("projects").then((response) => {
+      setProjects(response.data);
+    });
+  }, []);
+
+  async function handleAddProject() {
+    const response = await api.post("projects", {
+      title: `Novo projeto ${Date.now()}`,
+      owner: "Johnatan Osterloh",
+    });
+
+    const project = response.data;
+
+    setProjects([...projects, project]);
+  }
+
+  return (
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={projects}
+          keyExtractor={(project) => project.id}
+          renderItem={({ item: project }) => (
+            <Text style={styles.project}>{project.title}</Text>
+          )}
+        />
+
+        <TouchableOpacity
+          activeOpacity={0.6}
+          style={styles.button}
+          onPress={handleAddProject}
+        >
+          <Text style={styles.buttonText}>Adicionar Projeto</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    </>
+  );
+}
+```
+
 ## Tecnologias
 
 - [React Native](https://reactnative.dev/)
 - [yarn](https://yarnpkg.com/)
 - [Android Studio](https://developer.android.com/studio)
+- [Axios](https://github.com/axios/axios)
 
 ---
 
