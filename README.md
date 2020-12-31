@@ -6,7 +6,7 @@
 
 ## Descrição
 
-Este projeto foi desenvolvido em <strong>[React Native](https://reactnative.dev/)</strong> para fins de capacitação pessoal
+Este projeto foi desenvolvido em <strong> [React Native](https://reactnative.dev) </strong> para fins de capacitação pessoal
 
 ## Como Usar
 
