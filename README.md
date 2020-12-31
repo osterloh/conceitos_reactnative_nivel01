@@ -12,7 +12,7 @@ Este projeto foi desenvolvido em <strong>[ReactNative](https://reactnative.dev)<
 
 Para clonar e executar este aplicativo, você precisará [Git](https://git-scm.com), [Node.js v12.20.0](https://nodejs.org/) ou superior + [Yarn 1.22.5](https://yarnpkg.com/) ou superior, [Android Studio](https://developer.android.com/studio) e [Java 8](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html) instalado no seu computador.
 
-- Para configurar o Android Studio é possível seguir o tutorial desenvolvido pela equipe da (Rocketseat)[https://rocketseat.com.br/], clicando <strong>[aqui](https://react-native.rocketseat.dev/)</strong>.
+- Para configurar o Android Studio é possível seguir o tutorial desenvolvido pela equipe da [Rocketseat](https://rocketseat.com.br/), clicando <strong>[aqui](https://react-native.rocketseat.dev/)</strong>.
 
 - Executar no seu terminal:
 
